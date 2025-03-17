@@ -1,3 +1,5 @@
+# Basiert auf diesem: https://github.com/RPiList/SynVideos/tree/main/Videos/Docker-Ghostfolio
+
 services:
   ghostfolio:
     image: docker.io/ghostfolio/ghostfolio:latest
