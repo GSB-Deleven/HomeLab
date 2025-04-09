@@ -15,7 +15,7 @@ graph TB
     D1 --> D1x[Proxmox]
     D1x --> D1a[LXCs]
     D1x --> D1b[VMs]
-    D --> D2[Mac Mini]
+    D --> D2[MacMini]
     D2 --> D2x[Proxmox]
     D2x --> D2a[LXCs]
     D2x --> D2b[VMs]
