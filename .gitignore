@@ -1,1 +1,33 @@
+# Verstecke Umgebungsdateien
 *.env
+
+# VS Code Ordner (lokale Workspace-Settings)
+.vscode/
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Logs & temporäre Dateien
+*.log
+*.bak
+*.tmp
+
+# macOS Systemdateien
+.DS_Store
+
+# Python / Pip cache (falls verwendet)
+__pycache__/
+*.pyc
+
+# node_modules (falls mal npm verwendet wird)
+node_modules/
+
+# Backup-/Cache-Dateien
+*.swp
+*.swo
+*.orig
+
+# rclone Logfiles (falls benannt)
+rclone*.log
+
+# JetBrains IDEs (falls Rider/CLion irgendwann)
+.idea/
