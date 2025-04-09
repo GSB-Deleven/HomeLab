@@ -1,6 +1,6 @@
 ## Homelab
 
-Willkommen in meinem Homelab!  
+Willkommen in meinem HomeLab!  
 Dieses Repository dokumentiert alle meine Maschinen, Container, VMs und benutzerdefinierten Skripte, inklusive Setup-Guides und Workflows. Ziel ist eine klare Struktur und einfache Wartung – auch wenn mal etwas Zeit zwischen den Projekten vergeht.
 
 ## Struktur
