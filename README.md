@@ -9,7 +9,7 @@ Dieses Repository dokumentiert alle meine Maschinen, Container, VMs und benutzer
 graph TB
     A[Homelab] --> B[custom-scripts]
     A --> C[workflows]
-    C --> C1[backup-strategy]
+    C --> C1[backup_strategy]
     A --> D[hosts]
     D --> D1[NAB6]
     D1 --> D1x[Proxmox]
