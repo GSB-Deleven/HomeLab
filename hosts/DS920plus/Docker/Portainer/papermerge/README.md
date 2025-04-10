@@ -37,8 +37,8 @@ POSTGRES_USER=papermerge
 POSTGRES_PASSWORD=supersecurepassword
 
 # == Django Superuser ==
-DJANGO_SUPERUSER_USERNAME=admin
-DJANGO_SUPERUSER_PASSWORD=admin
+DJANGO_SUPERUSER_USERNAME=admin # hier dein wunschusername
+DJANGO_SUPERUSER_PASSWORD=admin # hier dein wunschpasswort
 DJANGO_SUPERUSER_EMAIL=admin@bla.net
 
 # == Papermerge Core Settings ==
@@ -97,7 +97,7 @@ services:
       PAPERMERGE__DATABASE__NAME: ${POSTGRES_DB}
       PAPERMERGE__DATABASE__HOST: db
       PAPERMERGE__REDIS__URL: redis://redis:6379/0
-      PAPERMERGE__MAIN__ALLOWED_HOSTS: ${ALLOWED_HOSTS}
+      # PAPERMERGE__MAIN__ALLOWED_HOSTS: ${ALLOWED_HOSTS} #Das machte nur Problem
     volumes:
       - /volume1/docker/papermerge/media:/app/media
       - /volume1/docker/papermerge/data:/app/data
