@@ -12,16 +12,8 @@ Willkommen im Ordner `custom-scripts/ds920`. Dieses Skript wurde speziell für d
 
 ## 🔄 Ziel des Skripts
 
-Das Skript `ds920_backup.sh` sichert folgende Verzeichnisse:
-
-- `/mnt/ds920/photo`
-- `/mnt/ds920/proxmox`
-- `/mnt/ds920/proxmox_backups`
-- `/mnt/ds920/docker`
-- `/mnt/ds920/homes_deleven`
-- `/mnt/ds920/nextcloud`
-
-Diese werden auf die Zielpfade unter `/mnt/nfs/DS920Backup/` kopiert.
+Das Skript `ds920_backup.sh` sichert mehrere definierte Verzeichnisse auf deinem NAS.  
+Die exakten Pfade werden über Umgebungsvariablen in der `.env`-Datei gesteuert.
 
 ---
 
@@ -49,16 +41,13 @@ graph TD
 
 ## 🧾 Benötigte `.env`
 
-Die zentrale `.env`-Datei wird aus folgendem Pfad geladen:
+Die `.env`-Datei definiert alle benötigten Variablen wie z. B.:
 
-```bash
-/opt/GitHub-Repo/custom-scripts/.env
-```
+- den Discord Webhook für Benachrichtigungen (`DISCORD_WEBHOOK`)
+- Quellpfade der Daten auf dem NAS (`MNT_*`)
+- Zielpfade für das Backup (`MNT_BACKUP_TARGET`, `DST_*`)
 
-Benötigter Eintrag:
-```env
-DISCORD_WEBHOOK=https://discord.com/api/webhooks/...
-```
+Eine vollständige Vorlage findest du in `custom-scripts/.env.example`.
 
 ---
 
