@@ -1,0 +1,28 @@
+# .github/workflows/embed.yml
+
+name: Embed docker-compose.yml in README
+
+on:
+  push:
+    paths:
+      - '**/README.md'
+      - '**/*.yml'
+  workflow_dispatch:
+
+jobs:
+  embed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Code Embedder
+        uses: kvankova/code-embedder@v1.1.2
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add .
+          git commit -m "Update embedded code"
+          git push || echo "No changes to commit"ﬁ
