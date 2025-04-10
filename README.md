@@ -31,6 +31,9 @@ graph TB
 
 ### Formatierungs Cheatsheet
 
+* Ich nutze auch [Code Embedder](https://github.com/marketplace/actions/code-embedder)
+    * Damit kann ich internen code irgendwo in README dateien kopieren
+
 > [!NOTE]
 > Useful information that users should know, even when skimming content.
 
