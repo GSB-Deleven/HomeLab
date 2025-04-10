@@ -2,14 +2,14 @@
 
 # Konfigurationsdatei für das Skript
 CONFIG_FILE="/root/homelab-monitor.cfg"
-ENV_FILE="/root/homelab-monitor.env"
+ENV_FILE="$GITHUB_REPO/custom-scripts/.env"
 # Wenn die Konfigurationsdatei existiert, lade sie
 [ -f "$CONFIG_FILE" ] && source "$CONFIG_FILE"
 [ -f "$ENV_FILE" ] && source "$ENV_FILE"
 
 # Definition des Remote-Hosts und des Pfads zum Skript auf dem Remote-Host
 REMOTE_HOST="$REMOTE_HOST"
-REMOTE_SCRIPT_PATH="$REMOTE_SCRIPT_PATH"
+REMOTE_SCRIPT_PATH="$GITHUB_REPO/custom-scripts/homelab-monitor/homelab-monitor.sh"
 # Benutzername für SSH-Verbindung
 SSH_USER="$SSH_USER"
 
