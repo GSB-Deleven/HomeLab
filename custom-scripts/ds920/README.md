@@ -39,6 +39,20 @@ graph TD
 
 ---
 
+## 🖥️ Ausführungsumgebung
+
+Das Skript läuft auf dem Debian-LXC-Container `CT100`, in dem auch dein Discord-Bot betrieben wird.  
+Von hier aus kann es manuell oder über einen Bot-Slash-Command gestartet werden.
+
+Die Datei befindet sich unter:
+
+- Skript: `$GITHUB_REPO/custom-scripts/ds920/ds920_backup.sh`
+- Umgebungsvariablen: `$GITHUB_REPO/custom-scripts/.env`
+
+Der Basispfad `$GITHUB_REPO` wird in der `.env` gesetzt und auf allen Systemen einheitlich verwendet.
+
+---
+
 ## 🧾 Benötigte `.env`
 
 Die `.env`-Datei definiert alle benötigten Variablen wie z. B.:
