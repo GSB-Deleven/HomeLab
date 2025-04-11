@@ -8,7 +8,7 @@ Dieses Repository dokumentiert alle meine Maschinen, Container, VMs und benutzer
 ```mermaid
 graph TB
     A[Homelab] --> B[custom-scripts]
-    B --> B1[ds920]
+    B --> B1[ds920_backup]
     B1 --> B1a[ds920_backup.sh]
     B --> B2[homelab-monitor]
     B2 --> B2a[homelab-monitor.sh]
