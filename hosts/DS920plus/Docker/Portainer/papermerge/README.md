@@ -18,7 +18,7 @@ Erstelle in der FileStation oder per SSH folgende Verzeichnisse:
 
 ## ⚙️ .env-Datei (Speicherort: `/volume1/docker/papermerge/.env`)
 
-```bash
+```ini
 # Zugangsdaten Admin
 PAPERMERGE__AUTH__USERNAME=admin
 PAPERMERGE__AUTH__PASSWORD=admin
