@@ -68,15 +68,12 @@ nano ${MONITOR_SCRIPT}
 ➡️ Inhalt siehe vollständiges Skript unter Abschnitt **[homelab-monitor.sh]()** weiter unten.
 
 
-:::info
-Wichtig: Datei ausführbar machen:
-
-```bash
-chmod +x ${MONITOR_SCRIPT}
-```
-
-:::
-
+> [!IMPORTANT]
+> Wichtig: Datei ausführbar machen:
+>
+> ```bash
+> chmod +x ${MONITOR_SCRIPT}
+> ```
 
 ---
 
@@ -89,15 +86,12 @@ nano ${BOT_DIR}/bot.py
 ➡️ Inhalt siehe vollständiges Skript unter Abschnitt **[bot.py]()** weiter unten.
 
 
-:::info
-Wichtig: Datei ausführbar machen:
-
-```bash
-chmod +x ${BOT_DIR}/bot.py
-```
-
-:::
-
+> [!IMPORTANT]
+> Wichtig: Datei ausführbar machen:
+> 
+> ```bash
+> chmod +x ${BOT_DIR}/bot.py
+> ```
 
 ---
 
@@ -165,7 +159,8 @@ In einem Discord-Channel `/serverstatus` aufrufen. Wenn alles richtig ist: 🟢 
 > [!CAUTION]
 > Slash-Commands sind eventuell nicht sofort verfügbar. Discord synchronisiert neue Commands manchmal verzögert.
 
-![Screenshot]()
+![Bildschirmfoto 2025-04-11 um 16 20 59](https://github.com/user-attachments/assets/2e307a27-0c9f-412f-9821-5a01e283c468)
+
 
 
 ---
@@ -382,7 +377,7 @@ CHECK_NAS_BACKUP=false
 
 ## ✅ 10. Fertig – so sieht’s aus:
 
-![Screenshot]()
+![Bildschirmfoto 2025-04-11 um 16 20 59](https://github.com/user-attachments/assets/82af7cdd-e3a9-4fd5-9183-041ecd8a13a5)
 
 ```mermaid
 graph TD
