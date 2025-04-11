@@ -18,14 +18,29 @@ Erstelle in der FileStation oder per SSH folgende Verzeichnisse:
 
 ## ⚙️ .env-Datei (Speicherort: `/volume1/docker/papermerge/.env`)
 
-```bash:hosts/DS920plus/Docker/Portainer/papermerge/.env.example
+```bash
+# Zugangsdaten Admin
+PAPERMERGE__AUTH__USERNAME=admin
+PAPERMERGE__AUTH__PASSWORD=admin
+
+# Secret Key für Django (32+ Zeichen, keine Sonderzeichen wie $)
+PAPERMERGE__SECURITY__SECRET_KEY=bitteändern1234567890abcdef
+
+# Medien- und Datenbankpfade (werden im Stack gemountet)
+MEDIA_ROOT=/media
+DB_ROOT=/db
+
+# PostgreSQL-Datenbank
+POSTGRES_USER=coco
+POSTGRES_PASSWORD=jumbo
+POSTGRES_DB=pmgdb
 ```
 
 ---
 
 ## 🐳 docker-compose.yml (für Portainer Stack)
 
-```yaml:hosts/DS920plus/Docker/Portainer/papermerge/docker.compose.yml
+```yaml
 version: "3.9"
 
 services:
