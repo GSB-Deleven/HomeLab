@@ -152,7 +152,7 @@ services:
 ## 🌐 Zugriff
 
 - Webinterface: [http://NAS-IP:8810](http://NAS-IP:8810)
-- Optional: via Cloudflare Tunnel (z. B. `https://paperless.deleven.net`)
+- Optional: via Cloudflare Tunnel (z. B. `https://paperless.yourdomain.net`)
 
 ---
 
