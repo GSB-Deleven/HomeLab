@@ -1,9 +1,9 @@
 # 📦 DS920+ Backup-Skript
 
-> ✅ Zentrales Backup-Skript zur Spiegelung wichtiger Verzeichnisse deiner Synology DS920+ auf das PR4100.
+✅ Zentrales Backup-Skript zur Spiegelung wichtiger Verzeichnisse deiner Synology DS920+ auf das PR4100.
 > 
-> > [!NOTE]
-> > Das Skript ist speziell auf dein Homelab abgestimmt und funktioniert am besten in Kombination mit deinem bestehenden Discord Bot und den Mount-Points auf CT100.
+> [!NOTE]
+> Das Skript ist speziell auf dein Homelab abgestimmt und funktioniert am besten in Kombination mit deinem bestehenden Discord Bot und den Mount-Points auf CT100.
 >
 > - Unterstützt Discord-Benachrichtigungen
 > - Enthält Watchdog gegen Inaktivität
@@ -144,16 +144,3 @@ Es werden automatisch Nachrichten bei Start, Erfolg oder Fehlern gesendet. Beisp
   ```bash
   *.env
   ```
-
----
-
-## 📌 Nächste Ideen
-
-- [ ] Parallelisierung der rclone-Jobs
-- [ ] Unterstützung für differenzielle Backups
-- [ ] Optionaler ZIP-Export der Logs für Audits
-
----
-
-Fragen oder Anregungen?  
-Meld dich wie immer direkt im Discord!
