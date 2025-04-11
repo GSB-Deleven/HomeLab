@@ -204,5 +204,5 @@ graph TD
   A[DSM: Ordner erstellen] --> B[.env mit Pfaden und Variablen]
   B --> C[Portainer: Stack anlegen]
   C --> D[Container starten]
-  D --> E[Zugriff via http://NAS-IP:8810]
+  D --> E[Zugriff via NAS-IP:8810]
 ```
