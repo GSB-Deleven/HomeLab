@@ -28,6 +28,7 @@ jobs:
             echo "no_changes=true" >> $GITHUB_ENV
           else
             echo "no_changes=false" >> $GITHUB_ENV
+          fi # Add this line to close the if block
 
       - name: Commit and push changes
         if: env.no_changes == 'false'
