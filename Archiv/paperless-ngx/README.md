@@ -111,7 +111,7 @@ docker restart paperless-ngx-webserver
 
 ### 1️⃣ Umgebungsvariablen im Stack setzen
 
-```bash
+```ini
 PAPERLESS_REDIS=redis://broker:6379
 PAPERLESS_ADMIN_USER=<adminuser>
 PAPERLESS_ADMIN_PASSWORD=<sicheres_passwort>
