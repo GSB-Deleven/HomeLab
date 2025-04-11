@@ -2,11 +2,17 @@
 
 ## 📌 Ziel
 
+> [!NOTE]
+> Diese Anleitung ist speziell für den Betrieb von Paperless-NGX auf einer Synology NAS mit Portainer optimiert – ohne Proxmox, LXC oder manuelle Docker-CLI.
+
 Diese Anleitung beschreibt die Installation von **Paperless-NGX** direkt über **Portainer** auf deiner **Synology DS920+**, ohne Proxmox oder LXC. Die Daten werden in einem dedizierten Verzeichnis gespeichert und der Stack wird über das Portainer Webinterface deployed.
 
 ---
 
 ## 📁 Ordnerstruktur vorbereiten
+
+> [!TIP]
+> Erstelle die Verzeichnisse direkt über DSM oder SSH – die Pfade müssen exakt mit dem `.env`- und Compose-Setup übereinstimmen.
 
 Erstelle folgende Verzeichnisse in DSM (File Station oder SSH):
 
@@ -21,6 +27,9 @@ Erstelle folgende Verzeichnisse in DSM (File Station oder SSH):
 ---
 
 ## ⚙️ .env-Datei erstellen
+
+> [!IMPORTANT]
+> Die `.env`-Datei ist zentral für deine Konfiguration – alle Variablen wie `UID`, `GID`, OCR-Sprache und Hostnamen werden hier gesetzt.
 
 Lege in `/volume1/docker/paperless-ngx/` eine `.env` Datei mit folgendem Inhalt an:
 
@@ -77,6 +86,9 @@ DATA_DIR=/volume1/docker/paperless-ngx # Hier den Pfad zu deinem Paperless-Volum
 ---
 
 ## 🐳 Docker Compose (für Portainer)
+
+> [!TIP]
+> Du kannst die `docker-compose.yml` auch im Webeditor direkt in Portainer einfügen – achte auf korrekte Einrückung und Zeilenumbrüche.
 
 Erstelle eine neue Stack-Datei (`docker-compose.yml`) oder verwende den "Web editor" in Portainer:
 
@@ -147,6 +159,9 @@ services:
 6. Wähle den Pfad: `/volume1/docker/paperless-ngx/.env`
 7. Klicke auf **"Deploy the stack"**
 
+> [!WARNING]
+> Stelle sicher, dass alle Volumes korrekt angelegt sind und die `.env`-Datei am richtigen Ort liegt – sonst schlägt der Stack-Start fehl.
+
 ---
 
 ## 🌐 Zugriff
@@ -168,6 +183,9 @@ docker exec -it paperless-ngx-webserver document_importer
 
 ## ❌ Datenbank beschädigt?
 
+> [!CAUTION]
+> Durch das Löschen oder Umbenennen der `db.sqlite3` gehen alle bisherigen Metadaten verloren – nutze diese Option nur bei echtem Datenbankfehler.
+
 1. Stoppe den Stack in Portainer
 2. Benenne `db.sqlite3` um:
 
@@ -179,4 +197,12 @@ mv /volume1/docker/paperless-ngx/data/db.sqlite3 /volume1/docker/paperless-ngx/d
 
 ---
 
-✅ Fertig! Paperless-NGX läuft jetzt auf deiner Synology NAS in Portainer.
+## ✅ Fertig! Paperless-NGX läuft jetzt auf deiner Synology NAS in Portainer.
+
+```mermaid
+graph TD
+  A[DSM: Ordner erstellen] --> B[.env mit Pfaden und Variablen]
+  B --> C[Portainer: Stack anlegen]
+  C --> D[Container starten]
+  D --> E[Zugriff via http://NAS-IP:8810]
+```

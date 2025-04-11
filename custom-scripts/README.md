@@ -4,6 +4,8 @@
 1. Repo klonen: `git clone <repository-url>`
 2. `.env` aus Vorlage anlegen: Kopiere `.env.example` zu `.env` und passe die Werte an.
 3. Abhängigkeiten installieren: Führe `pip install -r requirements.txt` aus.
+   > [!TIP]
+   > Du kannst Python-Abhängigkeiten auch in einer virtuellen Umgebung installieren.
 4. Skripte ausführbar machen: Optional, führe `chmod +x *.sh` aus.
 5. Bot starten oder Monitor-Skript manuell testen: Starte den Bot mit `python bot.py` oder teste das Monitor-Skript mit `bash homelab-monitor.sh`.
 
@@ -33,10 +35,14 @@ Diese Anleitung zeigt Schritt für Schritt, wie man das Repository installiert u
    ```
 5. Installieren Sie die Python-Abhängigkeiten: Führen Sie `pip install -r requirements.txt` aus.
 6. Testen Sie den Bot und die Skripte: Starten Sie den Bot mit `python bot.py` oder testen Sie das Monitor-Skript manuell mit `bash homelab-monitor.sh`.
+   > [!NOTE]
+   > Wenn du den Bot dauerhaft betreiben willst, solltest du später einen systemd-Dienst einrichten.
 > Wenn Sie den Bot als Dienst laufen lassen möchten, finden Sie später in der Dokumentation Hinweise zur Einrichtung mit `systemd`.
 
 ## ⚙️ Einrichtung (.env-Datei)
 Für die Konfiguration der Skripte ist eine `.env`-Datei erforderlich. Diese Datei sollte sensible Informationen enthalten und sollte **nicht** ins Repository eingecheckt werden. Eine Beispielvorlage finden Sie in der Datei `.env.example`. Stellen Sie sicher, dass Sie auch `GIT_REPO_PATH` definieren, da alle Pfade dynamisch berechnet werden.
+> [!IMPORTANT]
+> Diese Datei enthält sensible Informationen und darf niemals ins Repository committed werden!
 
 ### Beispiel `.env`-Inhalt
 ```
@@ -48,6 +54,8 @@ GIT_REPO_PATH=/path/to/your/repo
 
 ## 🤖 Discord-Bot (bot.py)
 Das Skript `bot.py` ermöglicht die Interaktion mit Discord über einen Bot, der in einem beliebigen Container läuft. Der Bot lädt die `.env`-Datei und kommuniziert via SSH mit dem Monitoring-Host. Er führt `homelab-monitor.sh` und `ds920_backup.sh` auf dem Zielsystem remote aus. Über den Bot sind die Slash-Commands `/serverstatus`, `/nasbackup` usw. verfügbar.
+> [!WARNING]
+> Achte darauf, dass nur eine Instanz des Bots gleichzeitig aktiv ist – doppelte Slash-Command-Registrierungen führen zu Fehlern.
 
 ### Beispielbefehl zur Ausführung
 ```bash
@@ -56,6 +64,8 @@ python bot.py
 
 ## 📊 System-Monitoring (homelab-monitor.sh)
 Das Skript `homelab-monitor.sh` überwacht verschiedene Systemparameter und wird auf dem Proxmox-Host (z. B. NAB6) ausgeführt. Es wird durch den Bot per SSH remote ausgelöst oder manuell mit `--manual`. Das Skript generiert eine JSON-Ausgabe für Discord Embeds und sendet diese an den Bot.
+> [!TIP]
+> Du kannst das Skript auch manuell mit `--manual` testen, um die Discord-Ausgabe lokal zu simulieren.
 
 ### Beispielbefehl zur Ausführung
 ```bash
@@ -64,6 +74,8 @@ bash homelab-monitor.sh
 
 ## 💾 NAS-Backup (ds920_backup.sh)
 Das Skript `ds920_backup.sh` führt regelmäßige Backups auf einem NAS durch und läuft direkt auf dem Host (nicht im Bot-Container). Start, Stop und Status werden remote via SSH durch den Bot angestoßen. Es nutzt Variablen aus der `.env`-Datei, führt rclone-/rsync-Backups aus und sendet Discord-Benachrichtigungen.
+> [!CAUTION]
+> Stelle sicher, dass alle Mounts korrekt verbunden sind, bevor das Backup-Skript läuft.
 
 ### Beispielbefehl zur Ausführung
 ```bash

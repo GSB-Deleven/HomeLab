@@ -7,6 +7,9 @@
 
 Willkommen im Ordner `custom-scripts/homelab-monitor` deines HomeLab-Repositories. Dieses Setup stellt ein umfassendes, modular aufgebautes Monitoring-Skript bereit, das sowohl manuell als auch remote via SSH ausgeführt werden kann. Es ist speziell auf dein Homelab-Setup zugeschnitten (Proxmox + NAS + Discord Bot) und basiert auf zentral gepflegten Variablen in einer `.env`-Datei.
 
+> [!NOTE]
+> Dieses Skript ist vollständig modular aufgebaut und lässt sich durch zentrale Variablen in der `.env` flexibel anpassen.
+
 ---
 
 ## 📊 Ziel des Skripts
@@ -22,6 +25,9 @@ custom-scripts/homelab-monitor/
 ├── homelab-monitor.sh   # Hauptskript
 ├── .env.example         # Beispiel für globale Umgebungsvariablen
 ```
+
+> [!TIP]
+> Die `.env.example` hilft dir dabei, schnell eigene Umgebungsvariablen anzulegen – einfach kopieren und anpassen.
 
 ---
 
@@ -66,6 +72,9 @@ CHECK_NAS_BACKUP=false
 
 ## 🔎 Funktionsweise (Ablauf)
 
+> [!IMPORTANT]
+> Das Skript wird auf dem Remote-Host ausgeführt, sammelt dort alle Daten und liefert das Ergebnis als JSON zurück.
+
 ```mermaid
 graph TD
     A[Lokales Skript starten] --> B[per SCP auf Remote kopieren]
@@ -104,6 +113,9 @@ Beispielausgabe:
 
 ## ⚙️ Trigger durch zentrale Cronjobs
 
+> [!CAUTION]
+> Das Skript **läuft nicht direkt auf dem CT100**, sondern wird zentral von NAB6 getriggert. Lokale Cronjobs würden zu Inkonsistenzen führen.
+
 Das Skript wird **nicht direkt via Cron auf dem CT100 ausgeführt**, sondern durch zentrale Cronjobs auf NAB6, z. B. in:
 
 - `check_and_reboot.sh`
@@ -115,6 +127,9 @@ Diese rufen `homelab-monitor.sh` gezielt per SSH auf. Ein separater Ordner für 
 
 ## ⚠️ Sicherheitshinweise
 
+> [!WARNING]
+> Die `.env` enthält sensible Daten wie Webhooks und IPs – niemals öffentlich teilen oder ins Repo pushen!
+
 - Die `.env`-Datei **niemals ins Git committen**!
 - Verwende stattdessen `.env.example` für das Repository.
 - Die `.gitignore` sollte beinhalten:
@@ -125,6 +140,9 @@ Diese rufen `homelab-monitor.sh` gezielt per SSH auf. Ein separater Ordner für 
 ---
 
 ## 🧠 Tipps
+
+> [!TIP]
+> Nutze ein gemeinsames `.env`-File für mehrere Skripte, um Redundanzen zu vermeiden und die Pflege zu erleichtern.
 
 - Die zentrale `.env` kann auch von anderen Skripten verwendet werden.
 - Die Checks lassen sich dort zentral aktivieren/deaktivieren.

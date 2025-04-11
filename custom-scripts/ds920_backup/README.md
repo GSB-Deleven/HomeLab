@@ -1,6 +1,9 @@
 # 📦 DS920+ Backup-Skript
 
 > ✅ Zentrales Backup-Skript zur Spiegelung wichtiger Verzeichnisse deiner Synology DS920+ auf das PR4100.
+> 
+> > [!NOTE]
+> > Das Skript ist speziell auf dein Homelab abgestimmt und funktioniert am besten in Kombination mit deinem bestehenden Discord Bot und den Mount-Points auf CT100.
 >
 > - Unterstützt Discord-Benachrichtigungen
 > - Enthält Watchdog gegen Inaktivität
@@ -14,6 +17,9 @@ Willkommen im Ordner `custom-scripts/ds920`. Dieses Skript wurde speziell für d
 
 Das Skript `ds920_backup.sh` sichert mehrere definierte Verzeichnisse auf deinem NAS.  
 Die exakten Pfade werden über Umgebungsvariablen in der `.env`-Datei gesteuert.
+
+> [!TIP]
+> Die Backup-Pfade kannst du flexibel in der `.env` anpassen – so musst du das Skript selbst nie ändern.
 
 ---
 
@@ -37,6 +43,15 @@ graph TD
     D --> E[Discord-Benachrichtigung bei Start/Ende/Fehler]
 ```
 
+```mermaid
+graph LR
+    X[ENV Variablen laden] --> Y{Mount vorhanden?}
+    Y -- ja --> Z[rclone Backup starten]
+    Y -- nein --> F[Fehler loggen]
+    Z --> G[Fehler zählen & Logging]
+    G --> H[Discord Nachricht senden]
+```
+
 ---
 
 ## 🖥️ Ausführungsumgebung
@@ -54,6 +69,9 @@ Der Basispfad `$GITHUB_REPO` wird in der `.env` gesetzt und auf allen Systemen e
 ---
 
 ## 🧾 Benötigte `.env`
+
+> [!IMPORTANT]
+> Ohne korrekt gesetzte `.env`-Datei kann das Skript nicht funktionieren – prüfe vor dem Start alle Pfade und Webhook-URLs.
 
 Die `.env`-Datei definiert alle benötigten Variablen wie z. B.:
 
@@ -95,6 +113,9 @@ bash ds920_backup.sh --skip nextcloud
 
 ## 🔔 Discord-Integration
 
+> [!TIP]
+> Verwende verschiedene Discord Webhooks für mehrere Backup-Typen, um Benachrichtigungen übersichtlich zu halten.
+
 Es werden automatisch Nachrichten bei Start, Erfolg oder Fehlern gesendet. Beispiel:
 ```text
 🛡️ **Backup gestartet** um: 2025-04-10 01:00:00
@@ -113,6 +134,9 @@ Es werden automatisch Nachrichten bei Start, Erfolg oder Fehlern gesendet. Beisp
 ---
 
 ## 🛡️ Sicherheitshinweise
+
+> [!WARNING]
+> Deine `.env` enthält sensible Zugangsdaten – sie darf niemals öffentlich gemacht oder in ein öffentliches Repository gepusht werden!
 
 - Die `.env`-Datei niemals committen!
 - Stattdessen ein `.env.example` nutzen

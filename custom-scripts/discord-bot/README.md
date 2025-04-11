@@ -1,5 +1,8 @@
 ### 📘 Dokumentation: HomeLab Discord Bot mit Slash-Commands
 
+> [!NOTE]
+> Der Bot-Host übernimmt nur das Senden an Discord – die eigentliche Statusabfrage erfolgt auf dem Zielhost (z. B. NAB6).
+
 Diese Anleitung beschreibt **idiotensicher Schritt für Schritt**, wie du einen Discord-Bot aufsetzt, der Systemstatusdaten deines `${MONITOR_HOST}` via `/serverstatus` in einem hübschen Discord-Embed anzeigt.
 
 
@@ -16,6 +19,9 @@ Diese Anleitung beschreibt **idiotensicher Schritt für Schritt**, wie du einen 
 ---
 
 ## 🔧 1. Vorbereitung am **Debian Bot-Host**
+
+> [!TIP]
+> Nutze dedizierte `.env`-Dateien pro Bot, falls du mehrere Discord-Bots gleichzeitig betreiben möchtest.
 
 ### 1.1 Verzeichnis anlegen
 
@@ -49,6 +55,9 @@ MONITOR_HOST=${MONITOR_HOST}
 ---
 
 ## 🧠 2. Monitoring-Skript `${MONITOR_SCRIPT}` erstellen auf dem **Bot-Host**
+
+> [!IMPORTANT]
+> Das Skript wird bei jedem Aufruf automatisch per SCP auf den Zielhost kopiert – stelle sicher, dass `scp` und SSH ohne Passwort funktionieren.
 
 → Dieses wird automatisch auf **NAB6** kopiert und dort ausgeführt.
 
@@ -93,6 +102,9 @@ chmod +x ${BOT_DIR}/bot.py
 ---
 
 ## 🛠️ 4. Bot als systemd-Service einrichten (auf dem **Bot-Host**)
+
+> [!TIP]
+> Durch den systemd-Dienst startet der Bot automatisch nach einem Reboot. Das ist besonders hilfreich bei Stromausfällen.
 
 ```bash
 nano /etc/systemd/system/homelabbot.service
@@ -150,12 +162,18 @@ Wenn kein Fehler: ✅ JSON-Ausgabe korrekt, Bot funktioniert.
 
 In einem Discord-Channel `/serverstatus` aufrufen. Wenn alles richtig ist: 🟢 schöner Embed mit Statusdaten deines `${MONITOR_HOST}`.
 
+> [!CAUTION]
+> Slash-Commands sind eventuell nicht sofort verfügbar. Discord synchronisiert neue Commands manchmal verzögert.
+
 ![Screenshot]()
 
 
 ---
 
 ## 🧼 7. Fehlerbehandlung
+
+> [!WARNING]
+> Der Bot kann bei JSON-Fehlern oder ungültiger Antwort vollständig abstürzen – prüfe die Ausgabe des Monitoring-Skripts sorgfältig.
 
 * Keine Ausgabe vom Script? → Prüfen mit `--manual` auf NAB6
 * Bot reagiert nicht? → Logs checken mit `journalctl -u homelabbot.service -f`
@@ -323,9 +341,6 @@ bot.run(TOKEN)
 
 ---
 
-
----
-
 ## 🗂️ Konfigurationsdateien
 
 ### 📄 .env (auf dem Bot-Host unter `/root/homelab/.env`)
@@ -368,3 +383,11 @@ CHECK_NAS_BACKUP=false
 ## ✅ 10. Fertig – so sieht’s aus:
 
 ![Screenshot]()
+
+```mermaid
+graph TD
+    A[Discord Slash-Command: /serverstatus] --> B[Bot führt SSH auf NAB6 aus]
+    B --> C[Monitor-Skript erzeugt JSON]
+    C --> D[Bot baut Discord Embed]
+    D --> E[Antwort im Discord-Channel]
+```
