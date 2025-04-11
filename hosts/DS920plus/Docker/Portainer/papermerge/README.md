@@ -18,7 +18,7 @@ Erstelle in der FileStation oder per SSH folgende Verzeichnisse:
 
 ## ⚙️ .env-Datei (Speicherort: `/volume1/docker/papermerge/.env`)
 
-```ini:hosts/DS920plus/.env.example
+```ini:hosts/DS920plus/Docker/Portainer/papermerge/.env.example
 ```
 
 ---
