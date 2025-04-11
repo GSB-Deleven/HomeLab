@@ -18,7 +18,7 @@ Erstelle in der FileStation oder per SSH folgende Verzeichnisse:
 
 ## ⚙️ .env-Datei (Speicherort: `/volume1/docker/papermerge/.env`)
 
-```bash:hosts/DS920plus/Docker/Portainer/papermerge/.env.example
+```ini:hosts/DS920plus/Docker/Portainer/papermerge/.env.example
 ```
 
 ---
@@ -26,6 +26,59 @@ Erstelle in der FileStation oder per SSH folgende Verzeichnisse:
 ## 🐳 docker-compose.yml (für Portainer Stack)
 
 ```yaml:hosts/DS920plus/Docker/Portainer/papermerge/docker.compose.yml
+version: "3.9"
+
+services:
+  webapp:
+    image: papermerge/papermerge:3.4.1
+    container_name: papermerge-web
+    environment:
+      PAPERMERGE__SECURITY__SECRET_KEY: ${PAPERMERGE__SECURITY__SECRET_KEY}
+      PAPERMERGE__AUTH__USERNAME: ${PAPERMERGE__AUTH__USERNAME}
+      PAPERMERGE__AUTH__PASSWORD: ${PAPERMERGE__AUTH__PASSWORD}
+      PAPERMERGE__DATABASE__URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      PAPERMERGE__MAIN__MEDIA_ROOT: ${MEDIA_ROOT}
+      PAPERMERGE__REDIS__URL: redis://redis:6379/0
+      PAPERMERGE__OCR__LANG_CODES: "eng,deu"
+      PAPERMERGE__OCR__DEFAULT_LANG_CODE: "deu"
+    volumes:
+      - /volume1/docker/papermerge/media:${MEDIA_ROOT}
+    ports:
+      - "8383:80"
+    depends_on:
+      - db
+      - redis
+
+  ocr_worker:
+    image: papermerge/ocrworker:0.3.1
+    container_name: papermerge-ocr
+    command: worker
+    environment:
+      PAPERMERGE__DATABASE__URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      PAPERMERGE__REDIS__URL: redis://redis:6379/0
+      PAPERMERGE__MAIN__MEDIA_ROOT: ${MEDIA_ROOT}
+      OCR_WORKER_ARGS: "-Q ocr -c 2"
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - /volume1/docker/papermerge/media:${MEDIA_ROOT}
+
+  db:
+    image: postgres:16.1
+    container_name: papermerge-db
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+    volumes:
+      - /volume1/docker/papermerge/db:${DB_ROOT}
+
+  redis:
+    image: bitnami/redis:7.2
+    container_name: papermerge-redis
+    environment:
+      ALLOW_EMPTY_PASSWORD: "yes"
 ```
 
 ---
