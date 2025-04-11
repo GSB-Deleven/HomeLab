@@ -4,8 +4,8 @@
 1. Repo klonen: `git clone <repository-url>`
 2. `.env` aus Vorlage anlegen: Kopiere `.env.example` zu `.env` und passe die Werte an.
 3. Abhängigkeiten installieren: Führe `pip install -r requirements.txt` aus.
-   > [!TIP]
-   > Du kannst Python-Abhängigkeiten auch in einer virtuellen Umgebung installieren.
+> [!TIP]
+> Du kannst Python-Abhängigkeiten auch in einer virtuellen Umgebung installieren.
 4. Skripte ausführbar machen: Optional, führe `chmod +x *.sh` aus.
 5. Bot starten oder Monitor-Skript manuell testen: Starte den Bot mit `python bot.py` oder teste das Monitor-Skript mit `bash homelab-monitor.sh`.
 
@@ -35,8 +35,8 @@ Diese Anleitung zeigt Schritt für Schritt, wie man das Repository installiert u
    ```
 5. Installieren Sie die Python-Abhängigkeiten: Führen Sie `pip install -r requirements.txt` aus.
 6. Testen Sie den Bot und die Skripte: Starten Sie den Bot mit `python bot.py` oder testen Sie das Monitor-Skript manuell mit `bash homelab-monitor.sh`.
-   > [!NOTE]
-   > Wenn du den Bot dauerhaft betreiben willst, solltest du später einen systemd-Dienst einrichten.
+> [!NOTE]
+> Wenn du den Bot dauerhaft betreiben willst, solltest du später einen systemd-Dienst einrichten.
 > Wenn Sie den Bot als Dienst laufen lassen möchten, finden Sie später in der Dokumentation Hinweise zur Einrichtung mit `systemd`.
 
 ## ⚙️ Einrichtung (.env-Datei)
