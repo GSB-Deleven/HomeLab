@@ -1,5 +1,8 @@
 name: Embed docker-compose.yml in README
 
+permissions:
+  contents: write
+
 on:
   push:
     paths:
