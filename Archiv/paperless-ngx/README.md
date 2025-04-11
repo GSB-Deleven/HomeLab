@@ -125,6 +125,7 @@ PAPERLESS_TIKA_ENDPOINT=http://tika:9998
 USERMAP_UID=1000
 USERMAP_GID=1000
 NFS_PATH=/mnt/<YOUR_NFS_FOLDER>
+
 ```
 
 ⚠️ Wichtig: Alle Schlüssel und Passwörter müssen **genau 32 Zeichen lang** sein und dürfen **keine Sonderzeichen wie $ \ oder "** enthalten. Du kannst dir z. B. mit einem Passwort-Generator (wie [bitwarden.com/password-generator](https://bitwarden.com/password-generator)) ein sicheres Passwort erzeugen.
@@ -187,7 +188,6 @@ services:
     image: ghcr.io/paperless-ngx/tika:latest
     container_name: paperless-ngx-tika
     restart: unless-stopped
-
 ```
 
 <!-- Hinweis: Diese Anleitung basiert auf einem externen YouTube-Tutorial. Probleme wurden mit ChatGPT gelöst und die Anleitung entsprechend überarbeitet. -->
